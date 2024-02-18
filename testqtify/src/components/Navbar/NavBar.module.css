@@ -18,7 +18,8 @@
   font-family: "Poppins";
   font-size: 18px;
   letter-spacing: 0.25px;
-}
-.feedbackButton:hover {
   cursor: pointer;
 }
+/* .feedbackButton:hover {
+  cursor: pointer;
+} */
