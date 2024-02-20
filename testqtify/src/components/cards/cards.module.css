@@ -1,0 +1,44 @@
+.cardBox {
+  width: 159px;
+  height: 232px;
+}
+.cardBody {
+  width: 159px;
+  height: 205px;
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+.cardImageContainer {
+  width: 159px;
+  height: 170px;
+  border-radius: 10px 10px 0px 0px;
+  overflow: hidden;
+}
+.cardImage {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.chipContainer {
+  width: 101px;
+  height: 23px;
+  padding: 1px;
+}
+.chip {
+  background-color: #121212;
+  color: #ffffff;
+  width: 101px;
+  height: 23px;
+  border-radius: 10px;
+  margin-left: 8px;
+  padding: 4px 8px 4px 8px;
+}
+.cardTitle {
+  min-width: 130px;
+  height: 21px;
+  color: #ffffff;
+  font-family: "Poppins";
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+}

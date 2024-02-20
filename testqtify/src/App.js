@@ -3,6 +3,8 @@ import logo from "./logo.svg";
 import Navbar from "./components/Navbar/navBar";
 import HeroSection from "./components/hero/HeroSection";
 import heroImg from "./assets/hero_headphones.png";
+
+import AlbumContainer from "./components/albumContainer/albumContainer";
 function App() {
   return (
     <div>
@@ -12,6 +14,7 @@ function App() {
         textLine2={"Over thousands podcast episodes"}
         image={heroImg}
       />
+      <AlbumContainer />
     </div>
   );
 }
