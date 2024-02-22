@@ -11,7 +11,7 @@
   width: 55.5vw;
   height: 212px;
   align-items: center;
-  /* justify-content: center;*/
+  justify-content: space-around;
 }
 .heroText {
   display: flex;

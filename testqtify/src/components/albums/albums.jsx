@@ -6,10 +6,13 @@ import Grid from "@mui/material/Grid";
 import AlbumCard from "../cards/albumCard";
 import capitalizeFirstLetter from "../../helper/capitalizeFirstLetter";
 import styles from "./albums.module.css";
+import generateCardsList from "./genrateCardList";
+import CardSwiper from "../cardSwipper/cardSwiper";
 
 export default function Albums({ name }) {
   let [list, setList] = useState([]);
   let [cardsList, setCardsList] = useState([]);
+  let [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
     let list;
@@ -21,40 +24,43 @@ export default function Albums({ name }) {
     // console.log("name-> ", name);
   }, []);
   useEffect(() => {
-    let listOfCard = printCards(list);
+    let listOfCard = generateCardsList(list);
     console.log(listOfCard);
     setCardsList(listOfCard);
   }, [list]);
-  let printCards = (list) => {
-    let listOfCards = list.map((ele) => {
-      return (
-        <Grid item md={12 / 7}>
-          <AlbumCard
-            image={ele.image}
-            title={ele.title}
-            follows={ele.follows}
-            id={ele.id}
-            slug={ele.slug}
-            key={ele.id}
-          />
-        </Grid>
-      );
-    });
 
-    return listOfCards;
+  let onClickHandler = (e) => {
+    setShowAll(!showAll);
   };
+
   return (
-    <Box>
+    <Box className={styles.container}>
       <Box className={styles.btnContainer}>
         <button className={styles.albumBtn}>{`${capitalizeFirstLetter(
           name
         )} Album`}</button>
-        <button className={styles.collapseBtn}>Collapse</button>
+
+        {showAll ? (
+          <button className={styles.collapseBtn} onClick={onClickHandler}>
+            Collapse
+          </button>
+        ) : (
+          <button className={styles.collapseBtn} onClick={onClickHandler}>
+            Show All
+          </button>
+        )}
       </Box>
       <Box>
-        <Grid container spacing={2}>
-          {cardsList.length ? cardsList : "loading data"}
-        </Grid>
+        {showAll ? (
+          <Grid container rowGap={1} columnGap={4}>
+            {cardsList.length ? cardsList : "loading data"}
+          </Grid>
+        ) : list.length ? (
+          <CardSwiper list={list} />
+        ) : (
+          "loading data"
+        )}
+        {/* {list.length ? <CardSwiper list={list} /> : "loading data"} */}
       </Box>
     </Box>
   );

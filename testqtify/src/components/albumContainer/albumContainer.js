@@ -1,8 +1,9 @@
 import Albums from "../albums/albums";
+import styles from "./container.module.css";
 
 export default function AlbumContainer() {
   return (
-    <div>
+    <div className={styles.container}>
       <Albums name={"new"} />
       <Albums name={"top"} />
     </div>

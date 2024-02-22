@@ -1,21 +1,19 @@
 import logo from "./logo.svg";
 // import './App.css';
 import Navbar from "./components/Navbar/navBar";
-import HeroSection from "./components/hero/HeroSection";
-import heroImg from "./assets/hero_headphones.png";
+import HomePage from "./pages/homePage";
+import { StyledEngineProvider } from "@mui/material";
 
 import AlbumContainer from "./components/albumContainer/albumContainer";
+import { Outlet } from "react-router-dom";
 function App() {
   return (
-    <div>
-      <Navbar />
-      <HeroSection
-        textLine1={"100 Thousand Songs, ad-free"}
-        textLine2={"Over thousands podcast episodes"}
-        image={heroImg}
-      />
-      <AlbumContainer />
-    </div>
+    <StyledEngineProvider>
+      <div>
+        <Navbar />
+        <Outlet />
+      </div>
+    </StyledEngineProvider>
   );
 }
 
