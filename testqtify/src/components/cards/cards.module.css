@@ -40,13 +40,13 @@
 }
 .cardTitle {
   min-width: 130px;
-  height: 10%;
+  height: 12%;
   color: #ffffff;
   font-family: "Poppins";
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 600;
-  line-height: 21px;
-  padding-top: 8px;
+
+  padding-top: 2px;
 }
 .links {
   text-decoration: none;

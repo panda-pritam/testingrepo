@@ -1,0 +1,20 @@
+.songs {
+  color: #ffffff;
+  font-family: "Poppins";
+  font-size: 20px;
+  font-weight: 600;
+  margin: 8px;
+}
+.labelText {
+  color: #ffffff !important;
+  font-family: "Poppins" !important;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  margin: 8px !important;
+}
+.MuiTabs-indicator {
+  background-color: #34c94b !important;
+}
+.MuiTab-root.Mui-selected {
+  color: #34c94b !important;
+}
