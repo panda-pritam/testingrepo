@@ -1,5 +1,6 @@
 .btnContainer {
   margin-bottom: 1rem;
+  margin-top: 1rem;
   display: flex;
   justify-content: space-between;
 }
@@ -23,4 +24,7 @@
   font-family: "Poppins";
   font-size: 20px;
   font-weight: 600;
+}
+.containerGrid {
+  border-bottom: 1px solid #34c94b;
 }

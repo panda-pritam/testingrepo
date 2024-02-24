@@ -10,7 +10,8 @@ import getGenres from "../../axios/getGenurs";
 import getSongs from "../../axios/getSongs";
 import "./tabs.css";
 import CardSwipers from "./swipers";
-import CardSwiper from "../cardSwipper/cardSwiper";
+import CardSwiper from "../cardSwipper/cardSwiper.js";
+import { getCardList } from "../albums/genrateCardList";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -71,14 +72,20 @@ export default function TabTesting() {
   let [filterList, setFilterlList] = useState([]);
   let [filterText, setFilterText] = useState("");
   let [allSongsList, setAllSongsList] = useState([]);
-  let [CardSwiper, setCardSwiper] = useState([]);
+
   let [genreList, setGenreList] = useState([]);
+  let [cardList, setCardList] = useState([]);
 
   useEffect(() => {
     generateTabList(setGenreList, setTabList);
     getAllSongsList(setAllSongsList);
     // generateSwiperOfPanel(allSongsList, setCardSwiper);
   }, []);
+
+  useEffect(() => {
+    let listOfSwiperCards = getCardList(allSongsList, "songs");
+    setCardList(listOfSwiperCards);
+  }, [allSongsList]);
 
   useEffect(() => {
     if (value != 0) {
@@ -112,7 +119,12 @@ export default function TabTesting() {
           </Box>
           <CustomTabPanel value={value} index={0}>
             {allSongsList.length > 0 ? (
-              <CardSwipers list={allSongsList} type={"songs"} />
+              <Box>
+                <CardSwiper
+                  list={[...allSongsList]}
+                  listOfCards={[...cardList]}
+                />
+              </Box>
             ) : (
               // <CardSwiper list={allSongsList} type={"songs"} />
               <Box display={"flex"} justifyContent={"center"}>

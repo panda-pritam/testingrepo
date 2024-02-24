@@ -10,6 +10,7 @@ import getSongs from "../axios/getSongs";
 import styles from "./songsSection/tabs.module.css";
 import CardSwipers from "./songsSection/swipers";
 import CardSwiper from "./cardSwipper/cardSwiper";
+import { getCardList } from "./genrateCardList";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -75,7 +76,7 @@ export function TabTesting() {
   const [value, setValue] = React.useState(0);
   let [tabList, setTabList] = useState([]);
   let [panalList, setPanalList] = useState([]);
-  let [filterText, setFilterText] = useState("");
+  let [cardList, setCardList] = useState([]);
   let [allSongsList, setAllSongsList] = useState([]);
   let [CardSwiper, setCardSwiper] = useState([]);
   let [genreList, setGenreList] = useState([]);
@@ -87,7 +88,8 @@ export function TabTesting() {
   }, []);
 
   useEffect(() => {
-    console.log(allSongsList);
+    let listOfSwiperCards = getCardList(allSongsList);
+    setCardList(listOfSwiperCards, "songs");
   }, [allSongsList]);
 
   const handleChange = (event, newValue) => {

@@ -1,91 +1,52 @@
 import React, { useEffect, useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import Box from "@mui/material/Box";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/free-mode";
-import "swiper/css/pagination";
 
-// import "./styles.css";
+import "./swiper.css";
 
 // import required modules
+import { useSwiper } from "swiper/react";
 import { FreeMode, Pagination } from "swiper/modules";
 import { Navigation } from "swiper/modules";
 // import generateCardsList from "../albums/genrateCardList";
-import AlbumCard from "../cards/albumCard";
-import styles from "./swiper.module.css";
-import "swiper/css/navigation";
-import "./swiperBtn.css";
 
-export default function CardSwiper({ list = [], type = "" }) {
+import styles from "./swiper.module.css";
+
+import { LeftNavigationBtn } from "./leftNavBtn";
+import { RightNavigationBtn } from "./rightNavBtn";
+
+const Controls = ({ data }) => {
+  let swiper = useSwiper();
+  useEffect(() => {
+    swiper.slideTo(0);
+  }, [data]);
+  return <></>;
+};
+
+export default function CardSwiper({ list = [], listOfCards }) {
   let [cardsList, setCardsList] = useState([]);
   let [slids, setSlides] = useState([]);
-  // console.log("type", type);
-  let generateCards = (list, type) => {
-    if (type === "songs") {
-      let arr = list.map((ele) => {
-        return (
-          <SwiperSlide key={ele.id} className={"swiperContainer"}>
-            <AlbumCard
-              image={ele.image}
-              title={ele.title}
-              likes={ele.likes}
-              id={ele.id}
-              slug={ele.slug}
-              type={"songs"}
-              key={ele.id}
-            />
-          </SwiperSlide>
-        );
-      });
-      return arr;
-    } else {
-      let arr = list.map((ele) => {
-        return (
-          <SwiperSlide key={ele.id} className={styles.swiperContainer}>
-            <AlbumCard
-              image={ele.image}
-              title={ele.title}
-              follows={ele.follows}
-              id={ele.id}
-              slug={ele.slug}
-              key={ele.id}
-            />
-          </SwiperSlide>
-        );
-      });
-      return arr;
-    }
-  };
+
   useEffect(() => {
-    // let arr = [];
-
-    // arr = list.map((ele) => {
-    //   return (
-    //     <SwiperSlide key={ele.id} className={styles.swiperContainer}>
-    //       <AlbumCard
-    //         image={ele.image}
-    //         title={ele.title}
-    //         follows={ele.follows}
-    //         id={ele.id}
-    //         slug={ele.slug}
-    //         key={ele.id}
-    //       />
-    //     </SwiperSlide>
-    //   );
-    // });
-
-    let arr = generateCards(list, type);
-    setCardsList(arr);
+    let slids = listOfCards.map((ele) => {
+      return (
+        <SwiperSlide className={styles.swiperContainer} key={ele.key}>
+          {ele}
+        </SwiperSlide>
+      );
+    });
+    setSlides([...slids]);
   }, [list]);
 
   // console.log("Card List ", cardsList);
   //   useEffect(()=>{});
 
   return (
-    <>
+    <div className={styles.container}>
       <Swiper
         slidesPerView={7}
         spaceBetween={30}
@@ -109,11 +70,14 @@ export default function CardSwiper({ list = [], type = "" }) {
           },
         }}
         modules={[FreeMode, Navigation]}
-        navigation={true}
+        // navigation={true}
         className="mySwiper"
       >
-        {cardsList}
+        {/* <Controls data={[...list]} /> */}
+        <LeftNavigationBtn />
+        <RightNavigationBtn />
+        {slids}
       </Swiper>
-    </>
+    </div>
   );
 }

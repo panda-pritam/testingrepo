@@ -6,12 +6,15 @@ import Grid from "@mui/material/Grid";
 import AlbumCard from "../cards/albumCard";
 import capitalizeFirstLetter from "../../helper/capitalizeFirstLetter";
 import styles from "./albums.module.css";
-import generateCardsList from "./genrateCardList";
+import generateGridItemsCardsList from "./genrateCardList";
 import CardSwiper from "../cardSwipper/cardSwiper";
+import CircularProgress from "@mui/material/CircularProgress";
+import { getCardList } from "./genrateCardList";
 
 export default function Albums({ name }) {
   let [list, setList] = useState([]);
-  let [cardsList, setCardsList] = useState([]);
+  let [GridCardsList, setGridCardsList] = useState([]);
+  let [cardList, setCardList] = useState([]);
   let [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
@@ -19,14 +22,16 @@ export default function Albums({ name }) {
     (async () => {
       list = await getAlbums(name);
       console.log("List ->   ", list);
-      await setList(list);
+      setList(list);
     })();
     // console.log("name-> ", name);
   }, []);
   useEffect(() => {
-    let listOfCard = generateCardsList(list);
+    let listOfCard = generateGridItemsCardsList(list);
     console.log(listOfCard);
-    setCardsList(listOfCard);
+    setGridCardsList(listOfCard);
+    let listOfSwiperCards = getCardList([...list]);
+    setCardList(listOfSwiperCards);
   }, [list]);
 
   let onClickHandler = (e) => {
@@ -52,13 +57,26 @@ export default function Albums({ name }) {
       </Box>
       <Box>
         {showAll ? (
-          <Grid container rowGap={1} columnGap={4}>
-            {cardsList.length ? cardsList : "loading data"}
+          <Grid
+            container
+            rowGap={1}
+            columnGap={4}
+            className={styles.containerGrid}
+          >
+            {GridCardsList.length ? (
+              GridCardsList
+            ) : (
+              <Box display={"flex"} justifyContent={"center"} color={"#34c94b"}>
+                <CircularProgress />
+              </Box>
+            )}
           </Grid>
         ) : list.length ? (
-          <CardSwiper list={list} />
+          <CardSwiper list={[...list]} listOfCards={[...cardList]} />
         ) : (
-          "loading data"
+          <Box display={"flex"} justifyContent={"center"} color={"#34c94b"}>
+            <CircularProgress />
+          </Box>
         )}
         {/* {list.length ? <CardSwiper list={list} /> : "loading data"} */}
       </Box>
