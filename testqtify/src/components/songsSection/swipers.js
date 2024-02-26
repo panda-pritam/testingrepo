@@ -11,8 +11,8 @@ import "swiper/css/pagination";
 // import "./styles.css";
 
 // import required modules
-import { FreeMode, Pagination } from "swiper/modules";
-import { Navigation } from "swiper/modules";
+import { FreeMode, Pagination } from "swiper";
+import { Navigation } from "swiper";
 // import generateCardsList from "../albums/genrateCardList";
 import AlbumCard from "../cards/albumCard";
 // import styles from "./swiper.module.css";

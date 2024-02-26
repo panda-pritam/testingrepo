@@ -10,8 +10,8 @@ import "./swiper.css";
 
 // import required modules
 import { useSwiper } from "swiper/react";
-import { FreeMode, Pagination } from "swiper/modules";
-import { Navigation } from "swiper/modules";
+import { FreeMode, Pagination } from "swiper";
+import { Navigation } from "swiper";
 // import generateCardsList from "../albums/genrateCardList";
 
 import styles from "./swiper.module.css";
@@ -48,6 +48,7 @@ export default function CardSwiper({ list = [], listOfCards }) {
   return (
     <div className={styles.container}>
       <Swiper
+        style={{ padding: "0px 20px" }}
         slidesPerView={7}
         spaceBetween={30}
         freeMode={true}

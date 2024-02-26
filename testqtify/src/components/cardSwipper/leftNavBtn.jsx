@@ -14,7 +14,7 @@ export function LeftNavigationBtn() {
   }, []);
   return (
     <div className={styles.leftBtn}>
-      {isBeginning && (
+      {!isBeginning && (
         <LeftArrow
           onClick={() => {
             // setIsBeginning(swiper.isBeginning);
@@ -22,6 +22,13 @@ export function LeftNavigationBtn() {
           }}
         />
       )}
+      {/* {
+        <LeftArrow
+          onClick={() => {
+            swiper.slidePrev();
+          }}
+        />
+      } */}
     </div>
   );
 }
