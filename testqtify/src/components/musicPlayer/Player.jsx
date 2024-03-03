@@ -8,7 +8,7 @@ import { BiSkipNext, BiSkipPrevious } from "react-icons/bi";
 import { IconContext } from "react-icons";
 
 export default function Player({ data }) {
-  console.log("Songs data-> ", data);
+  // console.log("Songs data-> ", data);
   const [isPlaying, setIsPlaying] = useState(false);
   const [time, setTime] = useState({
     min: "",
@@ -36,19 +36,22 @@ export default function Player({ data }) {
   }, [isPlaying]);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (sound) {
-        setSeconds(sound.seek([]));
-        const min = Math.floor(sound.seek([]) / 60);
-        const sec = Math.floor(sound.seek([]) % 60);
-        setCurrTime({
-          min,
-          sec,
-        });
-      }
-    }, 1000);
-    return () => clearInterval(interval);
-  }, [sound]);
+    // let interval;
+    if (isPlaying) {
+      const interval = setInterval(() => {
+        if (sound) {
+          setSeconds(sound.seek([]));
+          const min = Math.floor(sound.seek([]) / 60);
+          const sec = Math.floor(sound.seek([]) % 60);
+          setCurrTime({
+            min,
+            sec,
+          });
+        }
+      }, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [sound, isPlaying]);
 
   const playingButton = () => {
     if (isPlaying) {
