@@ -21,14 +21,14 @@ export default function Albums({ name }) {
     let list;
     (async () => {
       list = await getAlbums(name);
-      console.log("List ->   ", list);
+      // console.log("List ->   ", list);
       setList(list);
     })();
     // console.log("name-> ", name);
   }, []);
   useEffect(() => {
     let listOfCard = generateGridItemsCardsList(list);
-    console.log(listOfCard);
+    // console.log(listOfCard);
     setGridCardsList(listOfCard);
     let listOfSwiperCards = getCardList([...list]);
     setCardList(listOfSwiperCards);

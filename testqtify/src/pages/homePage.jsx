@@ -6,6 +6,7 @@ import TestSong from "../components/songsSection/testSongs";
 import TabTesting from "../components/songsSection/tabs";
 // import { TabTesting } from "../components/tabsss";
 import styles from "./homePage.module.css";
+import Faq from "../components/faq/FaqAcco";
 export default function HomePage() {
   return (
     <div className={styles.container}>
@@ -16,6 +17,7 @@ export default function HomePage() {
       />
       <AlbumContainer />
       <TabTesting />
+      <Faq />
     </div>
   );
 }

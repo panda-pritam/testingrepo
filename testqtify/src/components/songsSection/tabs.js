@@ -103,7 +103,7 @@ export default function TabTesting() {
   };
 
   return (
-    <div>
+    <div className={"TabsBox"}>
       <Box className={"songs"}>Songs</Box>
       <Box>
         <Box sx={{ width: "100%" }}>

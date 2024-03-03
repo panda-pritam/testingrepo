@@ -8,7 +8,7 @@ export function LeftNavigationBtn() {
   useEffect(() => {
     console.log(isBeginning);
     swiper.on("slideChange", function () {
-      console.log(isBeginning);
+      // console.log(isBeginning);
       setIsBeginning(swiper.isBeginning);
     });
   }, []);
